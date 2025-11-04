@@ -1,0 +1,216 @@
+format = """
+[](#2C3E50)\
+$os\
+$time\
+$battery\
+$hostname\
+[](bg:#F1C40F fg:#2C3E50)\
+$directory\
+[](fg:#F1C40F bg:#3498DB)\
+$git_branch\
+$git_status\
+$git_state\
+[](fg:#3498DB bg:#62D7FD)\
+$golang\
+$java\
+$nodejs\
+$rust\
+$python\
+$terraform\
+[](fg:#62D7FD bg:#F8EFE0)\
+$docker_context\
+[](fg:#F8EFE0 bg:#F85E3F)\
+$conda\
+[ ](fg:#F85E3F)\
+$line_break\
+$character
+"""
+
+# Set to true to avoid a two-line prompt
+[line_break]
+disabled = false
+
+# Set disabled to true when using a one-line prompt for more aesthetically pleasing results
+[character]
+success_symbol = '[⚡](bold yellow)'
+error_symbol = '[⚡](bold red)'
+format = '$symbol '
+disabled = false
+
+# Disable the blank line at the start of the prompt
+#add_newline = false
+
+# You can also replace your username with a neat symbol like  or disable this
+# and use the os module below
+[username]
+show_always = true
+style_user = 'bg:#2C3E50'
+style_root = 'bg:#2C3E50'
+format = '[  $user ]($style)'
+disabled = false
+
+[hostname]
+ssh_only = true
+ssh_symbol = '🌐'
+trim_at = '.'
+style = 'bg:#2C3E50'
+format = '[$ssh_symbol $hostname]($style)'
+disabled = false
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+symbol = ''
+style = 'bg:#2C3E50'
+format = '[ $symbol ]($style)'
+disabled = true  # disabled by default
+
+[time]
+disabled = false
+style = 'bg:#2C3E50'
+use_12hr = false
+time_format = "%H:%M"
+format = "[ $time ]($style)"
+#disabled = false
+### color is set to orange, because of the configured time_range--to get your attention for e. g. R&R time ;)
+#style = 'bg:#2C3E50'
+#use_12hr = false
+#time_format = "%H:%M"
+#utc_time_offset = "local"
+#time_range = "20:00:00-06:00:00"
+# format = '[ $symbol ]($style)'
+
+
+[directory]
+style = 'bg:#F1C40F fg:#2C3E50'
+format = '[ $path ]($style)'
+truncation_length = 3
+truncation_symbol = '…/'
+
+[directory.substitutions]
+"Documents" = "📄 "
+"Downloads" = "📥 "
+"Music" = "🎜 "
+"Pictures" = "📷 "
+
+[c]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[conda]
+symbol = '🅒'
+style = 'bg:#EC8FD0 fg:#2C3E50'
+format = '[ $symbol $environment ]($style)'
+ignore_base = false
+
+[docker_context]
+symbol = ''
+style = 'bg:#FCA17D fg:#2C3E50'
+format = '[ $symbol $context ]($style) $path'
+
+[elixir]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[git_branch]
+symbol = ''
+style = 'bg:#3498DB fg:#2C3E50'
+format = '[ $symbol $branch ]($style)'
+
+[git_state]
+style = 'bg:#3498DB fg:#2C3E50'
+rebase = "rebasing"
+merge = "merging"
+revert = "reverting"
+cherry_pick = " picking"
+bisect = "bisecting"
+am = "am'ing"
+am_or_rebase = "am/rebase"
+format = '[ $symbol $state ]($style)'
+
+[git_status]
+style = 'bg:#3498DB fg:#2C3E50'
+stashed = "📦 ${count}"
+ahead = " ⇡ ${count}"
+behind = " ⇣ ${count}"
+diverged = " ⇕ ${ahead_count} ${behind_count}"
+conflicted = " = ${count}"
+deleted = " ✘ ${count}"
+renamed = " » {count}"
+modified = " ! ${count}"
+staged = " + ${count}"
+untracked = " ? ${count}"
+format = '[$all_status$ahead_behind ]($style)'
+
+[golang]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[julia]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[python]
+symbol = '🐍'
+format = '[${symbol} ${pyenv_prefix} (${version} )(\($virtualenv\) )]($style)'
+style = 'bg:#62D7FD fg:#2C3E50'
+
+[rlang]
+symbol = '📐'
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[$symbol ($version )]($style)'
+
+[rust]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = ''
+style = 'bg:#62D7FD fg:#2C3E50'
+format = '[ $symbol ($version) ]($style)'
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡"
+
+[[battery.display]]
+threshold = 30
+style = "bold red"
+
+[cmd_duration]
+disabled = false
+format = "took [$duration]($style)"
+
+[terraform]
+format = '[[ $workspace ($version) ](fg:#a0a9cb bg:#1d2230)]($style) '

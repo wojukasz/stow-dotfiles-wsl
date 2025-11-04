@@ -1,0 +1,54 @@
+# Zsh
+.zcompdump*
+.zsh_history
+.zsh_sessions/
+.zsh-update
+
+# Cache directories
+.cache/
+
+# Backup files
+*.bak
+*.backup
+*.bak.*
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Editor backups
+*.swp
+*.swo
+*~
+.*.sw?
+
+# Secrets
+.secret_envvars
+*.pem
+*.key
+!*.pub
+
+# Local machine-specific config
+.zshrc.local
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+venv/
+.venv/
+
+# asdf
+.tool-versions.local
