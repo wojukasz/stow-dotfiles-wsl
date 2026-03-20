@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+# Always run from the script's directory so stow packages are found
+cd "$(dirname "$(realpath "$0")")"
+
 echo "==> Starting WSL provisioning script for SRE environment..."
 
 # Ensure we're running on Arch Linux
@@ -90,13 +93,14 @@ PACKAGES=(
   bat           # Cat with syntax highlighting
   fzf           # Fuzzy finder
   jq            # JSON processor
-  yq            # YAML processor
+  go-yq         # YAML processor
   
   # Development tools
   neovim        # Text editor
   git
   tig           # Text-mode interface for git
   git-delta     # Better git diff viewer
+  lazygit       # Terminal UI for git
   
   # Terminal & Shell
   zsh           # Shell
@@ -244,7 +248,7 @@ if [ ! -d ~/.bash-my-aws ]; then
   echo "    - bash-my-aws installed"
 else
   echo "    - bash-my-aws already installed"
-  cd ~/.bash-my-aws && git pull && cd ~
+  git -C ~/.bash-my-aws pull
 fi
 
 # Install Datadog CLI (optional - uncomment if needed)
@@ -261,6 +265,16 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
   echo "    - Tmux plugin manager installed"
 else
   echo "    - Tmux plugin manager already installed"
+fi
+
+# Setup LazyVim
+echo "==> Setting up LazyVim..."
+if [ ! -d ~/.config/nvim ]; then
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  rm -rf ~/.config/nvim/.git
+  echo "    - LazyVim starter cloned (run 'nvim' to install plugins)"
+else
+  echo "    - ~/.config/nvim already exists, skipping"
 fi
 
 # Setup SSH agent systemd service for WSL
@@ -311,7 +325,7 @@ if [ ! -d "zsh" ] && [ ! -d "git" ] && [ ! -d "starship" ]; then
 fi
 
 # Stow each configuration
-STOW_PACKAGES=(curl git starship tmux zsh)
+STOW_PACKAGES=(curl git lazygit starship tmux zsh)
 
 for package in "${STOW_PACKAGES[@]}"; do
   if [ -d "$package" ]; then
@@ -325,7 +339,7 @@ done
 # Set zsh as default shell
 if [ "$SHELL" != "/usr/bin/zsh" ] && [ "$SHELL" != "/bin/zsh" ]; then
   echo "==> Setting zsh as default shell..."
-  chsh -s "$(which zsh)"
+  chsh -s /usr/bin/zsh
   echo "    - Default shell changed to zsh (restart terminal to apply)"
 fi
 
@@ -333,11 +347,12 @@ echo ""
 echo "==> WSL provisioning complete! 🎉"
 echo ""
 echo "Next steps:"
-echo "  1. Restart your terminal or run: exec zsh"
+echo "  1. Open a new terminal — zsh will launch and auto-install all plugins"
+echo "     (zinit, starship, fzf-tab, autosuggestions, etc. install on first run)"
 echo "  2. Run 'tmux' and press prefix + I to install tmux plugins"
 echo "  3. Configure AWS CLI: aws configure sso"
 echo "  4. Setup SSH keys in ~/.ssh/"
-echo "  5. Open neovim and install plugins if configured"
+echo "  5. Run 'nvim' to trigger LazyVim plugin installation"
 echo ""
 echo "AWS Tools installed:"
 echo "  - AWS CLI v2"

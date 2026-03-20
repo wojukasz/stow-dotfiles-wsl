@@ -51,7 +51,8 @@ zinit light molovo/tipz
 
 # ===== OMZ Plugins =====
 # AWS plugin from Oh My Zsh
-zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/aws/aws.plugin.zsh'
+zinit snippet OMZP::aws
+zinit snippet OMZP::kubectl
 
 # Command-not-found suggestions
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh'

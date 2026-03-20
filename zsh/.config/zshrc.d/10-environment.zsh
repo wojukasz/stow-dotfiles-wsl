@@ -18,6 +18,7 @@ fi
 
 # History configuration
 export HISTFILE="${XDG_STATE_HOME}/zsh_history"
+[[ -f "$HISTFILE" ]] || touch "$HISTFILE"
 export HISTSIZE=50000
 export SAVEHIST=50000
 export HISTCONTROL=ignoredups:ignorespace

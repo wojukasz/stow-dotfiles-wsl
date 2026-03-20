@@ -2,7 +2,6 @@
 [user]
     email = my_email
     name = my_name
-    signingkey = 1C0A_my_key
 
 [commit]
     gpgsign = true
@@ -49,6 +48,7 @@
 	pager = delta
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	editor = nvim
+	hooksPath = ~/.config/git/hooks
 
 [diff]
   tool = nvimdiff

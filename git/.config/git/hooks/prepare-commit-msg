@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MSG_FILE="$1"
+COMMIT_SOURCE="${2-}"
+
+# Only for normal commits; don't clobber -m, merges, squash, amend, templates
+[ -n "$COMMIT_SOURCE" ] && exit 0
+
+# Nothing staged, nothing to do
+git diff --cached --quiet && exit 0
+
+TMP_PROMPT="$(mktemp)"
+trap 'rm -f "$TMP_PROMPT"' EXIT
+
+cat > "$TMP_PROMPT" <<'EOF'
+Generate a single conventional commit message for the staged git diff.
+Rules:
+- Output only the commit message
+- First line only
+- No backticks
+- No explanation
+- Keep it concise but specific
+EOF
+
+MSG="$(
+  git diff --cached --no-ext-diff --unified=0 \
+  | claude -p "$(cat "$TMP_PROMPT")"
+)"
+
+printf '%s\n' "$MSG" > "$MSG_FILE"

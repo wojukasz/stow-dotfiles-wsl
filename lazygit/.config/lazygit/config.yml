@@ -1,0 +1,3 @@
+# lazygit config
+# AI commit messages are handled globally by the prepare-commit-msg git hook.
+# Press 'c' to commit — Claude will pre-fill the message automatically.
