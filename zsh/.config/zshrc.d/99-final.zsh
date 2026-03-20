@@ -43,7 +43,7 @@ start_tmux() {
 }
 
 # Uncomment the line below to enable tmux auto-start
-# start_tmux
+start_tmux
 
 # ===== FZF Key Bindings =====
 # If fzf is installed, set up key bindings
