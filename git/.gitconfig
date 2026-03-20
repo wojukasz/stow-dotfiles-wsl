@@ -1,7 +1,8 @@
 # Global Config
 [user]
-    email = my_email
-    name = my_name
+    email = lukasz.m.wojnicki@gmail.com
+    name = Lukasz Wojnicki
+    signingkey = 8FD8A775D2F4EB3F
 
 [commit]
     gpgsign = true

@@ -1,4 +1,4 @@
-# ~/.config/zshrc.d/70-aws.zsh
+#ws ~/.config/zshrc.d/70-aws.zsh
 # AWS-specific configuration, aliases, and functions
 
 # ===== bash-my-aws Integration =====
@@ -10,13 +10,19 @@ if [ -d "${BMA_HOME:-$HOME/.bash-my-aws}" ]; then
   # bash-my-aws functions will work, just without bash completion
 fi
 
+# Workflow profiles
+#w Rune sso login
+# then the awsmaster
+# assume the OrgDeploy role in the account you want to work in
+
 # ===== AWS Aliases =====
 # AWS SSO
 alias sso='aws configure sso'
-alias awslogin='aws sso login'
+alias awslogin='aws sso login --profile master'
 
 # Quick profile switching
 alias awsp='export AWS_PROFILE='
+alias awsmaster='export AWS_PROFILE=master'
 
 # EC2 Session Manager
 ssm() {

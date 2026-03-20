@@ -19,3 +19,6 @@ fi
 
 # asdf version manager
 . "$HOME/.asdf/asdf.sh"
+
+alias mediaserver='ssh -i /home/wojukasz/.ssh/id_ed25519_pi lukani@192.168.0.169'
+
