@@ -6,8 +6,8 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # AWS Configuration
-export AWS_REGION="eu-west-2"
-export AWS_DEFAULT_REGION="eu-west-2"
+# export AWS_REGION="eu-west-2"
+# export AWS_DEFAULT_REGION="eu-west-2"
 
 # SSH agent socket (WSL)
 if uname -a | grep 'Linux' &> /dev/null; then

@@ -22,3 +22,11 @@ fi
 
 alias mediaserver='ssh -i /home/wojukasz/.ssh/id_ed25519_pi lukani@192.168.0.169'
 
+alias bootdev='/home/wojukasz/.asdf/installs/golang/1.25.3/bin/bootdev'
+
+export OLLAMA_HOST=0.0.0.0
+
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+ alias zr='find . -type f -name "*:Zone.Identifier" -delete'

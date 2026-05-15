@@ -94,17 +94,17 @@ awsprofiles() {
   aws configure list-profiles
 }
 
-# Switch AWS region
-awsregion() {
-  if [ $# -eq 0 ]; then
-    echo "Current region: ${AWS_REGION:-${AWS_DEFAULT_REGION:-not set}}"
-    return 0
-  fi
-  
-  export AWS_REGION="$1"
-  export AWS_DEFAULT_REGION="$1"
-  echo "AWS region set to: $1"
-}
+# # Switch AWS region
+# awsregion() {
+#   if [ $# -eq 0 ]; then
+#     echo "Current region: ${AWS_REGION:-${AWS_DEFAULT_REGION:-not set}}"
+#     return 0
+#   fi
+#
+#   export AWS_REGION="$1"
+#   export AWS_DEFAULT_REGION="$1"
+#   echo "AWS region set to: $1"
+# }
 
 # Get AWS account ID
 awsaccount() {
